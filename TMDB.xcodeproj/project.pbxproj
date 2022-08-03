@@ -7,23 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AED4005E289A65D100705D27 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = AED4005D289A65D100705D27 /* SwiftyJSON */; };
+		AED40061289A65DB00705D27 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AED40060289A65DB00705D27 /* Alamofire */; };
+		AED40064289A65E800705D27 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AED40063289A65E800705D27 /* Kingfisher */; };
+		AED40066289A6FF600705D27 /* TrendingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED40065289A6FF600705D27 /* TrendingModel.swift */; };
+		AED40069289A74ED00705D27 /* TMDBCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED40067289A74ED00705D27 /* TMDBCollectionViewCell.swift */; };
+		AED4006A289A74ED00705D27 /* TMDBCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AED40068289A74ED00705D27 /* TMDBCollectionViewCell.xib */; };
+		AED4006C289A857300705D27 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED4006B289A857300705D27 /* ReusableViewProtocol.swift */; };
 		AED5CF002899FD3A00E96202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CEFF2899FD3A00E96202 /* AppDelegate.swift */; };
 		AED5CF022899FD3A00E96202 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CF012899FD3A00E96202 /* SceneDelegate.swift */; };
-		AED5CF042899FD3A00E96202 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CF032899FD3A00E96202 /* ViewController.swift */; };
+		AED5CF042899FD3A00E96202 /* TMDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CF032899FD3A00E96202 /* TMDBViewController.swift */; };
 		AED5CF072899FD3A00E96202 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AED5CF052899FD3A00E96202 /* Main.storyboard */; };
 		AED5CF092899FD3C00E96202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AED5CF082899FD3C00E96202 /* Assets.xcassets */; };
 		AED5CF0C2899FD3C00E96202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AED5CF0A2899FD3C00E96202 /* LaunchScreen.storyboard */; };
+		AED5CF142899FD4F00E96202 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AED5CF132899FD4F00E96202 /* .gitignore */; };
+		AED5CF162899FD6F00E96202 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CF152899FD6F00E96202 /* APIKey.swift */; };
+		AED5CF182899FD7B00E96202 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CF172899FD7B00E96202 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AED40065289A6FF600705D27 /* TrendingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingModel.swift; sourceTree = "<group>"; };
+		AED40067289A74ED00705D27 /* TMDBCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBCollectionViewCell.swift; sourceTree = "<group>"; };
+		AED40068289A74ED00705D27 /* TMDBCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TMDBCollectionViewCell.xib; sourceTree = "<group>"; };
+		AED4006B289A857300705D27 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		AED5CEFC2899FD3A00E96202 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED5CEFF2899FD3A00E96202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AED5CF012899FD3A00E96202 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AED5CF032899FD3A00E96202 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AED5CF032899FD3A00E96202 /* TMDBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBViewController.swift; sourceTree = "<group>"; };
 		AED5CF062899FD3A00E96202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AED5CF082899FD3C00E96202 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AED5CF0B2899FD3C00E96202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AED5CF0D2899FD3C00E96202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AED5CF132899FD4F00E96202 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AED5CF152899FD6F00E96202 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		AED5CF172899FD7B00E96202 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +48,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AED40064289A65E800705D27 /* Kingfisher in Frameworks */,
+				AED4005E289A65D100705D27 /* SwiftyJSON in Frameworks */,
+				AED40061289A65DB00705D27 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AED4005B289A658900705D27 /* APIKey & Constant */ = {
+			isa = PBXGroup;
+			children = (
+				AED5CF152899FD6F00E96202 /* APIKey.swift */,
+				AED5CF172899FD7B00E96202 /* Constant.swift */,
+			);
+			path = "APIKey & Constant";
+			sourceTree = "<group>";
+		};
 		AED5CEF32899FD3A00E96202 = {
 			isa = PBXGroup;
 			children = (
+				AED5CF132899FD4F00E96202 /* .gitignore */,
 				AED5CEFE2899FD3A00E96202 /* TMDB */,
 				AED5CEFD2899FD3A00E96202 /* Products */,
 			);
@@ -56,9 +86,14 @@
 		AED5CEFE2899FD3A00E96202 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				AED4005B289A658900705D27 /* APIKey & Constant */,
 				AED5CEFF2899FD3A00E96202 /* AppDelegate.swift */,
 				AED5CF012899FD3A00E96202 /* SceneDelegate.swift */,
-				AED5CF032899FD3A00E96202 /* ViewController.swift */,
+				AED5CF032899FD3A00E96202 /* TMDBViewController.swift */,
+				AED4006B289A857300705D27 /* ReusableViewProtocol.swift */,
+				AED40067289A74ED00705D27 /* TMDBCollectionViewCell.swift */,
+				AED40068289A74ED00705D27 /* TMDBCollectionViewCell.xib */,
+				AED40065289A6FF600705D27 /* TrendingModel.swift */,
 				AED5CF052899FD3A00E96202 /* Main.storyboard */,
 				AED5CF082899FD3C00E96202 /* Assets.xcassets */,
 				AED5CF0A2899FD3C00E96202 /* LaunchScreen.storyboard */,
@@ -83,6 +118,11 @@
 			dependencies = (
 			);
 			name = TMDB;
+			packageProductDependencies = (
+				AED4005D289A65D100705D27 /* SwiftyJSON */,
+				AED40060289A65DB00705D27 /* Alamofire */,
+				AED40063289A65E800705D27 /* Kingfisher */,
+			);
 			productName = TMDB;
 			productReference = AED5CEFC2899FD3A00E96202 /* TMDB.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +151,11 @@
 				Base,
 			);
 			mainGroup = AED5CEF32899FD3A00E96202;
+			packageReferences = (
+				AED4005C289A65D100705D27 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				AED4005F289A65DB00705D27 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AED40062289A65E800705D27 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = AED5CEFD2899FD3A00E96202 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +170,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AED4006A289A74ED00705D27 /* TMDBCollectionViewCell.xib in Resources */,
+				AED5CF142899FD4F00E96202 /* .gitignore in Resources */,
 				AED5CF0C2899FD3C00E96202 /* LaunchScreen.storyboard in Resources */,
 				AED5CF092899FD3C00E96202 /* Assets.xcassets in Resources */,
 				AED5CF072899FD3A00E96202 /* Main.storyboard in Resources */,
@@ -138,8 +185,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AED5CF042899FD3A00E96202 /* ViewController.swift in Sources */,
+				AED5CF042899FD3A00E96202 /* TMDBViewController.swift in Sources */,
 				AED5CF002899FD3A00E96202 /* AppDelegate.swift in Sources */,
+				AED5CF182899FD7B00E96202 /* Constant.swift in Sources */,
+				AED40069289A74ED00705D27 /* TMDBCollectionViewCell.swift in Sources */,
+				AED5CF162899FD6F00E96202 /* APIKey.swift in Sources */,
+				AED4006C289A857300705D27 /* ReusableViewProtocol.swift in Sources */,
+				AED40066289A6FF600705D27 /* TrendingModel.swift in Sources */,
 				AED5CF022899FD3A00E96202 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +345,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -304,7 +357,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -321,6 +374,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -332,7 +386,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +412,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AED4005C289A65D100705D27 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		AED4005F289A65DB00705D27 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		AED40062289A65E800705D27 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AED4005D289A65D100705D27 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AED4005C289A65D100705D27 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		AED40060289A65DB00705D27 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AED4005F289A65DB00705D27 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		AED40063289A65E800705D27 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AED40062289A65E800705D27 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AED5CEF42899FD3A00E96202 /* Project object */;
 }
