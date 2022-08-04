@@ -15,7 +15,8 @@ class TMDBCollectionViewCell: UICollectionViewCell {
      
     @IBOutlet weak var releaseDateLabel: UILabel!
     
-    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var rankLabel: UILabel!
+    
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
