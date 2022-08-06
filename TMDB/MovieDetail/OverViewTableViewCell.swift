@@ -14,11 +14,8 @@ class OverViewTableViewCell: UITableViewCell {
             self.overViewLabel.textAlignment = .center
         }
     }
-    @IBOutlet weak var overViewArrowImageView: UIImageView!{
-        didSet {
-            self.overViewArrowImageView.backgroundColor = .clear
-        }
-    }
+    @IBOutlet weak var overViewArrowButton: UIButton!
+    
     
 
     

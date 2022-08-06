@@ -13,11 +13,10 @@ import Kingfisher
 import JGProgressHUD
 
 
-
-
 class TMDBViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     
     let hub = JGProgressHUD()
     
@@ -36,10 +35,10 @@ class TMDBViewController: UIViewController {
         collectionView.prefetchDataSource = self
         
         collectionView.register(UINib(nibName: TMDBCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TMDBCollectionViewCell.reuseIdentifier)
-        collectionViewDesign()
-        requestTMDBAPI()
         
-       
+        
+        collectionViewDesign()
+        requestTMDBAPI(media_type: "movie", time_window: "week")
         
        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.star"), style: .plain, target: .none, action: #selector(listButtonClicked))
@@ -68,47 +67,46 @@ class TMDBViewController: UIViewController {
         
     }
     
-    func requestTMDBAPI() {
-                
-        let media_type = "/movie" //all, movie, tv, person
-        let time_window = "/week" //day, week
-        let url = "\(EndPoint.tmdbURL)/trending\(media_type)\(time_window)?api_key=\(APIKey.TMDB)"
+    func requestTMDBAPI(media_type: String, time_window: String) {
         
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                //title, overview, poster_path, release_date
-                for movie in json["results"].arrayValue {
-                    self.totalPage = json["total_pages"].intValue
+            let url = "\(EndPoint.tmdbURL)/trending/\(media_type)/\(time_window)?api_key=\(APIKey.TMDB)"
+            
+            AF.request(url, method: .get).validate().responseData { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
                     
-                    let movieImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["poster_path"].stringValue)")
-                    let movieBackGroundImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["backdrop_path"].stringValue)")
+                    for movie in json["results"].arrayValue {
+                        let totalPage = json["total_pages"].intValue
+                        
+                        let movieImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["poster_path"].stringValue)")
+                        let movieBackGroundImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["backdrop_path"].stringValue)")
+                        
+                        let movieData = MovieInfoStruct (
+                            movieTitle:  movie["title"].stringValue,
+                            moviePoster: movieImage_url!,
+                            movieOverView: movie["overview"].stringValue,
+                            movieRank: movie["vote_average"].stringValue,
+                            moviereleaseDate: movie["release_date"].stringValue,
+                            movieID: movie["id"].intValue,
+                            movieBackGroundPoster: movieBackGroundImage_url!
+                        )
+                        self.movieList.append(movieData)
+                    }
+                           
                     
-                    let movieData = MovieInfoStruct (
-                        movieTitle:  movie["title"].stringValue,
-                        moviePoster: movieImage_url!,
-                        movieOverView: movie["overview"].stringValue,
-                        movieRank: movie["vote_average"].stringValue,
-                        moviereleaseDate: movie["release_date"].stringValue,
-                        movieId: movie["id"].intValue,
-                        movieBackGroundPoster: movieBackGroundImage_url!
-                    )
-                    
-                    self.movieList.append(movieData)
-                    
+                    self.collectionView.reloadData()
+                        
+     
+                case .failure(let error):
+                    print(error)
                 }
                 
-                self.collectionView.reloadData()
-                
-            case .failure(let error):
-                print(error)
             }
-            
-        }
 
-    }
+        }
+            
+
 }
 extension TMDBViewController: UICollectionViewDataSourcePrefetching {
     
@@ -116,7 +114,7 @@ extension TMDBViewController: UICollectionViewDataSourcePrefetching {
         for indexPath in indexPaths {
             if movieList.count - 1 == indexPath.item && movieList.count < totalPage {
                 changePage += 1
-                requestTMDBAPI()
+                requestTMDBAPI(media_type: "movie", time_window: "week")
             }
         }
     }
@@ -142,11 +140,24 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.behindgroundView.layer.cornerRadius = 10
         cell.behindgroundView.layer.borderWidth = 1
-        
+    
+        cell.clipButton.addTarget(self, action: #selector(clipButtonClicked), for: .touchUpInside)
+    
         return cell
         
        
     }
+    @objc func clipButtonClicked(_ sender: UIButton) {
+        
+        let sb = UIStoryboard(name: "MovieVideo", bundle: nil)
+        
+        let vc = sb.instantiateViewController(withIdentifier: "MovieVideoViewController") as! MovieVideoViewController
+        
+        vc.movieID = movieList[sender.tag].movieID
+    
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

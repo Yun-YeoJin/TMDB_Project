@@ -23,6 +23,8 @@ class TMDBCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var gotoDetailLabel: UILabel!
     
+    @IBOutlet weak var clipButton: UIButton!
+    
     
     
 }

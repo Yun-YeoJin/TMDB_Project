@@ -14,6 +14,6 @@ struct MovieInfoStruct {
     let movieOverView: String
     let movieRank: String
     let moviereleaseDate: String
-    let movieId: Int
+    let movieID: Int
     let movieBackGroundPoster: URL
 }

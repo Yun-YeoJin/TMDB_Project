@@ -67,13 +67,28 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bWF-B8-Ywb">
                                 <rect key="frame" x="0.0" y="8" width="479" height="406"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2a-dK-Ezc">
+                                <rect key="frame" x="413" y="22" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="aO4-9F-VES"/>
+                                    <constraint firstAttribute="width" constant="44" id="osv-mI-ATU"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="paperclip.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="E2a-dK-Ezc" firstAttribute="top" secondItem="PkY-ol-bAW" secondAttribute="top" constant="22" id="2rk-R3-dUa"/>
                             <constraint firstItem="bWF-B8-Ywb" firstAttribute="top" secondItem="PkY-ol-bAW" secondAttribute="top" constant="8" id="4NK-Ga-ZdU"/>
                             <constraint firstItem="bWF-B8-Ywb" firstAttribute="leading" secondItem="PkY-ol-bAW" secondAttribute="leading" id="93Z-3e-f4b"/>
                             <constraint firstItem="KFk-YH-T8r" firstAttribute="leading" secondItem="PkY-ol-bAW" secondAttribute="leading" constant="16" id="D1C-Vw-W0J"/>
                             <constraint firstAttribute="trailing" secondItem="bWF-B8-Ywb" secondAttribute="trailing" id="GfQ-Sn-eQo"/>
                             <constraint firstItem="oqg-W0-SkB" firstAttribute="trailing" secondItem="fwY-Lo-OLW" secondAttribute="trailing" id="Lxt-bf-eEy"/>
+                            <constraint firstAttribute="trailing" secondItem="E2a-dK-Ezc" secondAttribute="trailing" constant="22" id="RFh-un-0uZ"/>
                             <constraint firstItem="KFk-YH-T8r" firstAttribute="top" secondItem="bWF-B8-Ywb" secondAttribute="bottom" constant="16" id="UBX-JW-cRY"/>
                             <constraint firstItem="2uX-qU-3fw" firstAttribute="leading" secondItem="PkY-ol-bAW" secondAttribute="leading" constant="16" id="cSF-El-GoC"/>
                             <constraint firstItem="oqg-W0-SkB" firstAttribute="top" secondItem="jSM-4k-bys" secondAttribute="bottom" constant="12" id="cuC-Dk-D5L"/>
@@ -113,6 +128,7 @@
             <size key="customSize" width="479" height="616"/>
             <connections>
                 <outlet property="behindgroundView" destination="PkY-ol-bAW" id="9fc-y0-1bS"/>
+                <outlet property="clipButton" destination="E2a-dK-Ezc" id="I29-Xx-fff"/>
                 <outlet property="gotoDetailLabel" destination="2uX-qU-3fw" id="dEw-DB-stg"/>
                 <outlet property="movieImageView" destination="bWF-B8-Ywb" id="9if-mc-5IR"/>
                 <outlet property="overviewLabel" destination="jSM-4k-bys" id="xOT-VL-qlj"/>
@@ -125,5 +141,6 @@
     </objects>
     <resources>
         <image name="arrowshape.zigzag.right" catalog="system" width="128" height="93"/>
+        <image name="paperclip.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

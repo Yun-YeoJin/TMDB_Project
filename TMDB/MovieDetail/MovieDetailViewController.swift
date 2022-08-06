@@ -31,6 +31,7 @@ class MovieDetailViewController: UIViewController {
     var detailList: MovieInfoStruct?
     var actorList: [ActorInfoStruct] = []
     
+    var overViewImage = "chevron.down"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,36 +60,36 @@ class MovieDetailViewController: UIViewController {
     func requestDetailMovieAPI() {
         
 
-        let url = "\(EndPoint.tmdbURL)/movie/\(detailList!.movieId )/credits?api_key=\(APIKey.TMDB)"
-        
+        let url = "\(EndPoint.tmdbURL)/movie/\(detailList!.movieID )/credits?api_key=\(APIKey.TMDB)"
+
         AF.request(url, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 print("JSON: \(json)")
-                
-                
+
+
                 for Actor in json["cast"].arrayValue {
-                    
+
                     let actorImage = URL(string: "https://image.tmdb.org/t/p/w400/\(Actor["profile_path"].stringValue)")
-                    
+
                     let actorData = ActorInfoStruct (
                         name: Actor["name"].stringValue,
                         nickname: Actor["character"].stringValue,
                         actorImage: actorImage!
                         )
-                  
-                    
+
+
                     self.actorList.append(actorData)
-                    
+
                 }
-                
+
                 self.tableView.reloadData()
-                
+
             case .failure(let error):
                 print(error)
             }
-            
+
         }
         
         
@@ -114,7 +115,12 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        if indexPath.section == 0 {
+            let overView = overViewImage == "chevron.down" ? tableView.frame.size.height / 8 : UITableView.automaticDimension
+            return overView
+        } else {
             return tableView.frame.size.height / 8
+        }
         
     }
     
@@ -133,7 +139,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.reuseIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
             
             cell.overViewLabel.text = detailList?.movieOverView
-            cell.overViewArrowImageView.image = UIImage(systemName: "chevron.down")
+            cell.overViewArrowButton.setImage(UIImage(systemName: overViewImage), for: .normal)
+            
             return cell
             
         } else {
@@ -148,7 +155,15 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.reloadData()
+        
+        if indexPath.section == 0 {
+            if overViewImage == "chevron.down" {
+                overViewImage = "chevron.up"
+            } else {
+                overViewImage = "chevron.down"
+            }
+            tableView.reloadData()
+        }
     }
     
    
