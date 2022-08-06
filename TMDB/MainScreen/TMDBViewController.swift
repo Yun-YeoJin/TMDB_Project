@@ -36,9 +36,10 @@ class TMDBViewController: UIViewController {
         
         collectionView.register(UINib(nibName: TMDBCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TMDBCollectionViewCell.reuseIdentifier)
         
+        requestMovieAPI()
         
         collectionViewDesign()
-        requestTMDBAPI(media_type: "movie", time_window: "week")
+      
         
        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.star"), style: .plain, target: .none, action: #selector(listButtonClicked))
@@ -67,44 +68,12 @@ class TMDBViewController: UIViewController {
         
     }
     
-    func requestTMDBAPI(media_type: String, time_window: String) {
-        
-            let url = "\(EndPoint.tmdbURL)/trending/\(media_type)/\(time_window)?api_key=\(APIKey.TMDB)"
-            
-            AF.request(url, method: .get).validate().responseData { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    
-                    for movie in json["results"].arrayValue {
-                        let totalPage = json["total_pages"].intValue
-                        
-                        let movieImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["poster_path"].stringValue)")
-                        let movieBackGroundImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["backdrop_path"].stringValue)")
-                        
-                        let movieData = MovieInfoStruct (
-                            movieTitle:  movie["title"].stringValue,
-                            moviePoster: movieImage_url!,
-                            movieOverView: movie["overview"].stringValue,
-                            movieRank: movie["vote_average"].stringValue,
-                            moviereleaseDate: movie["release_date"].stringValue,
-                            movieID: movie["id"].intValue,
-                            movieBackGroundPoster: movieBackGroundImage_url!
-                        )
-                        self.movieList.append(movieData)
-                    }
-                           
-                    
-                    self.collectionView.reloadData()
-                        
-     
-                case .failure(let error):
-                    print(error)
-                }
-                
-            }
-
+    func requestMovieAPI() {
+        RequestMovieDataAPIManager.shared.requestTMDBAPI(media_type: "movie", time_window: "week") { list in
+            self.movieList.append(contentsOf: list)
+            self.collectionView.reloadData()
         }
+    }
             
 
 }
@@ -114,7 +83,7 @@ extension TMDBViewController: UICollectionViewDataSourcePrefetching {
         for indexPath in indexPaths {
             if movieList.count - 1 == indexPath.item && movieList.count < totalPage {
                 changePage += 1
-                requestTMDBAPI(media_type: "movie", time_window: "week")
+                requestMovieAPI()
             }
         }
     }
@@ -135,17 +104,18 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.titleLabel.text = "\(movieList[indexPath.item].movieTitle)"
         cell.overviewLabel.text = "\(movieList[indexPath.item].movieOverView)"
         
-        cell.movieImageView.kf.setImage(with: movieList[indexPath.item].moviePoster)
+        let posterURL = URL(string: EndPoint.imageURL + movieList[indexPath.item].moviePoster)
+        cell.movieImageView.kf.setImage(with: posterURL)
         cell.gotoDetailLabel.text = "자세한 정보"
         
         cell.behindgroundView.layer.cornerRadius = 10
         cell.behindgroundView.layer.borderWidth = 1
     
-        cell.clipButton.addTarget(self, action: #selector(clipButtonClicked), for: .touchUpInside)
+        cell.clipButton.addTarget(.none, action: #selector(clipButtonClicked), for: .touchUpInside)
     
         return cell
         
-       
+    
     }
     @objc func clipButtonClicked(_ sender: UIButton) {
         
@@ -164,7 +134,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
         
-        vc.detailList = movieList[indexPath.item] //데이터 넘겨줌
+        vc.movieData = movieList[indexPath.item] //데이터 넘겨줌
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

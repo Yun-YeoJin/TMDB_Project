@@ -12,6 +12,6 @@ struct ActorInfoStruct {
 
     let name: String
     let nickname: String
-    let actorImage: URL
+    let actorImage: String
 
 }

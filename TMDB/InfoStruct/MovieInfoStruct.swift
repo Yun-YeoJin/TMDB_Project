@@ -10,10 +10,10 @@ import Foundation
 struct MovieInfoStruct {
     
     let movieTitle: String
-    let moviePoster: URL
+    let moviePoster: String
     let movieOverView: String
     let movieRank: String
     let moviereleaseDate: String
     let movieID: Int
-    let movieBackGroundPoster: URL
+    let movieBackGroundPoster: String
 }

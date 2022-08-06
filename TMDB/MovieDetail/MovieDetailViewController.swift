@@ -13,26 +13,28 @@ import JGProgressHUD
 import Kingfisher
 
 enum Header: String, CaseIterable {
-    case overView
-    case actor
+    case OverView
+    case Actor
+    case Crew
 }
 
 class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var backgroundPosterImageView: UIImageView!
-    
     @IBOutlet weak var movieTitleLabel: UILabel!
     
-    let hud = JGProgressHUD()
-    
-    var detailList: MovieInfoStruct?
+    var movieData: MovieInfoStruct?
     var actorList: [ActorInfoStruct] = []
+    var crewList: [CrewInfoStruct] = []
     
+    let hud = JGProgressHUD()
+
     var overViewImage = "chevron.down"
     
+    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,62 +42,56 @@ class MovieDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MovieDetailTableViewCell", bundle: nil), forCellReuseIdentifier: MovieDetailTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: "OverViewTableViewCell", bundle: nil), forCellReuseIdentifier: OverViewTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: "CrewTableViewCell", bundle: nil), forCellReuseIdentifier: CrewTableViewCell.reuseIdentifier)
+    
         
-        backgroundPosterImageView.kf.setImage(with: detailList?.movieBackGroundPoster)
-        
-        posterImageView.kf.setImage(with: detailList?.moviePoster)
-        
-        movieTitleLabel.text = detailList?.movieTitle
+        movieTitleLabel.text = movieData?.movieTitle
         movieTitleLabel.font = .boldSystemFont(ofSize: 22)
         movieTitleLabel.textColor = .white
         
+        headerViewDesign(data: movieData!)
+        
+        requestActor()
+        
         navigationItem.title = " 영화 상세 "
         
-        requestDetailMovieAPI()
     }
     
-    
-    
-    
-    func requestDetailMovieAPI() {
+    func requestActor() {
         
-
-        let url = "\(EndPoint.tmdbURL)/movie/\(detailList!.movieID )/credits?api_key=\(APIKey.TMDB)"
-
-        AF.request(url, method: .get).validate().responseData { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-
-
-                for Actor in json["cast"].arrayValue {
-
-                    let actorImage = URL(string: "https://image.tmdb.org/t/p/w400/\(Actor["profile_path"].stringValue)")
-
-                    let actorData = ActorInfoStruct (
-                        name: Actor["name"].stringValue,
-                        nickname: Actor["character"].stringValue,
-                        actorImage: actorImage!
-                        )
-
-
-                    self.actorList.append(actorData)
-
-                }
-
-                self.tableView.reloadData()
-
-            case .failure(let error):
-                print(error)
-            }
-
+        guard let movieData = movieData else {
+            return
         }
         
+        RequestActorAPIManager.shared.requestActorAPI(movieData: movieData) { actorList, crewList in
+            self.actorList = actorList
+            self.crewList = crewList
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+
+    }
+    
+    func headerViewDesign(data: MovieInfoStruct) {
+        
+        let postImageURL = URL(string: EndPoint.imageURL + data.moviePoster)
+        posterImageView.kf.setImage(with: postImageURL)
+        let backImageURL = URL(string: EndPoint.imageURL + data.movieBackGroundPoster)
+        backgroundPosterImageView.kf.setImage(with: backImageURL)
+        posterImageView.contentMode = .scaleAspectFill
+        backgroundPosterImageView.contentMode = .scaleAspectFill
+        
+        movieTitleLabel.text = data.movieTitle
+        movieTitleLabel.font = .boldSystemFont(ofSize: 22)
+        movieTitleLabel.textColor = .white
+        
         
     }
     
     
+ 
     
 }
 
@@ -103,10 +99,13 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return Header.overView.rawValue
+            return Header.OverView.rawValue
+        } else if section == 1 {
+            return Header.Actor.rawValue
         } else {
-            return Header.actor.rawValue
+            return Header.Crew.rawValue
         }
+            
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -127,8 +126,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        } else {
+        } else if section == 1 {
             return actorList.count
+        } else {
+            return crewList.count
         }
             
     }
@@ -138,20 +139,31 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverViewTableViewCell.reuseIdentifier, for: indexPath) as? OverViewTableViewCell else { return UITableViewCell() }
             
-            cell.overViewLabel.text = detailList?.movieOverView
+            cell.overViewLabel.text = movieData?.movieOverView
             cell.overViewArrowButton.setImage(UIImage(systemName: overViewImage), for: .normal)
             
             return cell
             
-        } else {
+        } else if indexPath.section == 1 {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailTableViewCell.reuseIdentifier, for: indexPath) as? MovieDetailTableViewCell else { return UITableViewCell() }
         
+            
+        let actorImageURL = URL(string: EndPoint.imageURL + actorList[indexPath.item].actorImage)
+        cell.actorImageView.kf.setImage(with: actorImageURL)
+            
         cell.actorNameLabel.text = actorList[indexPath.row].name
         cell.actorNickNameLabel.text = actorList[indexPath.row].nickname
-        cell.actorImageView.kf.setImage(with: actorList[indexPath.row].actorImage)
-        
+    
         return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CrewTableViewCell.reuseIdentifier, for: indexPath) as? CrewTableViewCell else { return UITableViewCell() }
+            
+            cell.crewNameLabel.text = crewList[indexPath.row].name
+            cell.crewDepartmentLabel.text = crewList[indexPath.row].department
+        
+            return cell
         }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
