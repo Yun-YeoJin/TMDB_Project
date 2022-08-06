@@ -25,6 +25,7 @@ class TMDBViewController: UIViewController {
     var changePage = 1
     var totalPage = 0
     
+    var movieKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,8 @@ class TMDBViewController: UIViewController {
         collectionView.prefetchDataSource = self
         
         collectionView.register(UINib(nibName: TMDBCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TMDBCollectionViewCell.reuseIdentifier)
+        
+        
         
         requestMovieAPI()
         
@@ -74,6 +77,24 @@ class TMDBViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
+    
+    
+    // 영화 줄거리 보여주기
+    func requestMovieVideoAPI(movieID: Int) {
+        RequestMovieVideoAPIManager.shared.requestMovieVideoAPI(movieID: movieID) { movieKey in
+            self.movieKey = movieKey
+            DispatchQueue.main.async {
+                let sb = UIStoryboard(name: "MovieVideo", bundle: nil)
+                guard let vc = sb.instantiateViewController(withIdentifier: "MovieVideoViewController") as? MovieVideoViewController else { return }
+                
+                vc.movieKey = self.movieKey //movieKey값을 넘겨준다.
+                
+                self.present(vc, animated: true)
+                
+                
+            }
+        }
+    }
             
 
 }
@@ -110,8 +131,13 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.behindgroundView.layer.cornerRadius = 10
         cell.behindgroundView.layer.borderWidth = 1
-    
-        cell.clipButton.addTarget(.none, action: #selector(clipButtonClicked), for: .touchUpInside)
+        cell.behindgroundView.layer.shadowColor = UIColor.black.cgColor
+        cell.behindgroundView.layer.shadowOpacity = 0.5
+        cell.behindgroundView.layer.shadowRadius = 10
+        
+        cell.clipButton.tag = indexPath.item // tag값 설정
+        
+        cell.clipButton.addTarget(self, action: #selector(clipButtonClicked), for: .touchUpInside)
     
         return cell
         
@@ -119,13 +145,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     @objc func clipButtonClicked(_ sender: UIButton) {
         
-        let sb = UIStoryboard(name: "MovieVideo", bundle: nil)
-        
-        let vc = sb.instantiateViewController(withIdentifier: "MovieVideoViewController") as! MovieVideoViewController
-        
-        vc.movieID = movieList[sender.tag].movieID
-    
-        navigationController?.pushViewController(vc, animated: true)
+        requestMovieVideoAPI(movieID: movieList[sender.tag].movieID)
     }
     
     
