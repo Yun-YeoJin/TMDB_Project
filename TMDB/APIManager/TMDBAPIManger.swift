@@ -25,11 +25,18 @@ class RequestMovieDataAPIManager {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+          
+                
+                let list = json["results"].arrayValue.map { MovieInfoStruct(movieTitle: $0["title"].stringValue, moviePoster: $0["poster_path"].stringValue, movieOverView: $0["overview"].stringValue, movieRank: $0["vote_average"].stringValue, moviereleaseDate: $0["release_date"].stringValue, movieID: $0["id"].intValue, movieBackGroundPoster: $0["backdrop_path"].stringValue) }
+                
+                completionHandler(list)
+    
+                
+            case .failure(let error):
+                print(error)
                 
                 //let totalPage = json["total_pages"].intValue
-                
-                //URL(string: "https://image.tmdb.org/t/p/w400\(movie["poster_path"].stringValue)")
-                
+
                 //                for movie in json["results"].arrayValue {
                 //                    let movieTitle = movie["title"].stringValue
                 //                    let moviePoster = movie["poster_path"].stringValue
@@ -41,29 +48,6 @@ class RequestMovieDataAPIManager {
                 //
                 //                    let movieData = MovieInfoStruct(movieTitle: movieTitle, moviePoster: moviePoster, movieOverView: movieOverView, movieRank: movieRank, moviereleaseDate: moviereleaseDate, movieID: movieID, movieBackGroundPoster: movieBackGroundPoster)
                 //                }
-                
-                let list = json["results"].arrayValue.map { MovieInfoStruct(movieTitle: $0["title"].stringValue, moviePoster: $0["poster_path"].stringValue, movieOverView: $0["overview"].stringValue, movieRank: $0["vote_average"].stringValue, moviereleaseDate: $0["release_date"].stringValue, movieID: $0["id"].intValue, movieBackGroundPoster: $0["backdrop_path"].stringValue) }
-                
-                completionHandler(list)
-                //                        let movieImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["poster_path"].stringValue)")
-                //                        let movieBackGroundImage_url = URL(string: "https://image.tmdb.org/t/p/w400\(movie["backdrop_path"].stringValue)")
-                
-                
-                //                        let movieData = MovieInfoStruct (
-                //                            movieTitle:  movie["title"].stringValue,
-                //                            moviePoster: movieImage_url!,
-                //                            movieOverView: movie["overview"].stringValue,
-                //                            movieRank: movie["vote_average"].stringValue,
-                //                            moviereleaseDate: movie["release_date"].stringValue,
-                //                            movieID: movie["id"].intValue,
-                //                            movieBackGroundPoster: movieBackGroundImage_url!
-                //                        )
-                // self.movieList.append(movieData)
-                // self.collectionView.reloadData()
-                
-                
-            case .failure(let error):
-                print(error)
             }
             
         }

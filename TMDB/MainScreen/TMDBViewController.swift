@@ -56,6 +56,15 @@ class TMDBViewController: UIViewController {
         
     }
     
+    func formattedDate(dataString: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date = formatter.date(from: dataString) {
+            formatter.dateFormat = "dd / MM / yyyy"
+            return formatter.string(from: date)
+        } else { return "" }
+    }
     func collectionViewDesign() {
         
         let layout = UICollectionViewFlowLayout()
@@ -79,7 +88,7 @@ class TMDBViewController: UIViewController {
     }
     
     
-    // 영화 줄거리 보여주기
+    // 영화 예고편 보여주기
     func requestMovieVideoAPI(movieID: Int) {
         RequestMovieVideoAPIManager.shared.requestMovieVideoAPI(movieID: movieID) { movieKey in
             self.movieKey = movieKey
@@ -120,7 +129,8 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TMDBCollectionViewCell.identifier, for: indexPath) as? TMDBCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.releaseDateLabel.text = "개봉일 : \(movieList[indexPath.item].moviereleaseDate)"
+        cell.releaseDateLabel.text = "개봉일: " + formattedDate(dataString: movieList[indexPath.item].moviereleaseDate)
+        cell.releaseDateLabel.textColor = .darkGray
         cell.rankLabel.text = "평점: \(movieList[indexPath.item].movieRank)점"
         cell.titleLabel.text = "\(movieList[indexPath.item].movieTitle)"
         cell.overviewLabel.text = "\(movieList[indexPath.item].movieOverView)"
@@ -131,6 +141,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.behindgroundView.layer.cornerRadius = 10
         cell.behindgroundView.layer.borderWidth = 1
+       
         cell.behindgroundView.layer.shadowColor = UIColor.black.cgColor
         cell.behindgroundView.layer.shadowOpacity = 0.5
         cell.behindgroundView.layer.shadowRadius = 10
