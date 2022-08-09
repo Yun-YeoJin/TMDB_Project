@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PosterView" customModule="TMDB" customModuleProvider="target">
+            <connections>
+                <outlet property="netflixButton" destination="HYI-PC-fOr" id="mb6-ae-eBm"/>
+                <outlet property="posterImageView" destination="tEw-gC-FaE" id="XO6-D5-rgc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="305" height="345"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tEw-gC-FaE">
+                    <rect key="frame" x="8" y="8" width="289" height="329"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYI-PC-fOr">
+                    <rect key="frame" x="215" y="8" width="82" height="35"/>
+                    <color key="tintColor" systemColor="systemRedColor"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="NetFlix"/>
+                    <buttonConfiguration key="configuration" style="plain" title="NetFlix">
+                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HYI-PC-fOr" secondAttribute="trailing" constant="8" id="4Co-Qy-Paf"/>
+                <constraint firstItem="tEw-gC-FaE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="8me-Bp-49m"/>
+                <constraint firstItem="HYI-PC-fOr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="HXU-RX-PEB"/>
+                <constraint firstItem="tEw-gC-FaE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Jr4-zY-I1h"/>
+                <constraint firstAttribute="trailing" secondItem="tEw-gC-FaE" secondAttribute="trailing" constant="8" id="e5K-QP-6Qx"/>
+                <constraint firstAttribute="bottom" secondItem="tEw-gC-FaE" secondAttribute="bottom" constant="8" id="fol-dn-vMK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="61.594202898550726" y="-44.53125"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

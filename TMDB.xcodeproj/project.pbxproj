@@ -37,6 +37,14 @@
 		AED5CF0C2899FD3C00E96202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AED5CF0A2899FD3C00E96202 /* LaunchScreen.storyboard */; };
 		AED5CF142899FD4F00E96202 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AED5CF132899FD4F00E96202 /* .gitignore */; };
 		AED5CF162899FD6F00E96202 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5CF152899FD6F00E96202 /* APIKey.swift */; };
+		AEEECB9728A25F4C00CD70AA /* PosterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEEECB9628A25F4C00CD70AA /* PosterView.xib */; };
+		AEEECB9928A25F5A00CD70AA /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEECB9828A25F5A00CD70AA /* PosterView.swift */; };
+		AEEECB9B28A2603100CD70AA /* NetFlixMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEECB9A28A2603100CD70AA /* NetFlixMainViewController.swift */; };
+		AEEECB9E28A2607000CD70AA /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEECB9C28A2607000CD70AA /* PosterCollectionViewCell.swift */; };
+		AEEECB9F28A2607000CD70AA /* PosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEEECB9D28A2607000CD70AA /* PosterCollectionViewCell.xib */; };
+		AEEECBA128A260B500CD70AA /* NetFlixTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEECBA028A260B500CD70AA /* NetFlixTableViewCell.swift */; };
+		AEEECBA328A2646C00CD70AA /* NetFlixMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEECBA228A2646C00CD70AA /* NetFlixMain.storyboard */; };
+		AEEECBA528A2738200CD70AA /* NetFlixInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEECBA428A2738200CD70AA /* NetFlixInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +76,14 @@
 		AED5CF0D2899FD3C00E96202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AED5CF132899FD4F00E96202 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AED5CF152899FD6F00E96202 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		AEEECB9628A25F4C00CD70AA /* PosterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterView.xib; sourceTree = "<group>"; };
+		AEEECB9828A25F5A00CD70AA /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
+		AEEECB9A28A2603100CD70AA /* NetFlixMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlixMainViewController.swift; sourceTree = "<group>"; };
+		AEEECB9C28A2607000CD70AA /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
+		AEEECB9D28A2607000CD70AA /* PosterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCollectionViewCell.xib; sourceTree = "<group>"; };
+		AEEECBA028A260B500CD70AA /* NetFlixTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlixTableViewCell.swift; sourceTree = "<group>"; };
+		AEEECBA228A2646C00CD70AA /* NetFlixMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NetFlixMain.storyboard; sourceTree = "<group>"; };
+		AEEECBA428A2738200CD70AA /* NetFlixInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlixInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +232,7 @@
 		AED5CEFE2899FD3A00E96202 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				AEEECB9528A25F2100CD70AA /* NetFlix */,
 				AED4005B289A658900705D27 /* APIKey & EndPoint */,
 				AE4A3E22289CF39400300ABD /* APIManager */,
 				AED5CEFF2899FD3A00E96202 /* AppDelegate.swift */,
@@ -230,6 +247,21 @@
 				AED5CF012899FD3A00E96202 /* SceneDelegate.swift */,
 			);
 			path = TMDB;
+			sourceTree = "<group>";
+		};
+		AEEECB9528A25F2100CD70AA /* NetFlix */ = {
+			isa = PBXGroup;
+			children = (
+				AEEECB9628A25F4C00CD70AA /* PosterView.xib */,
+				AEEECB9828A25F5A00CD70AA /* PosterView.swift */,
+				AEEECB9A28A2603100CD70AA /* NetFlixMainViewController.swift */,
+				AEEECB9C28A2607000CD70AA /* PosterCollectionViewCell.swift */,
+				AEEECB9D28A2607000CD70AA /* PosterCollectionViewCell.xib */,
+				AEEECBA028A260B500CD70AA /* NetFlixTableViewCell.swift */,
+				AEEECBA228A2646C00CD70AA /* NetFlixMain.storyboard */,
+				AEEECBA428A2738200CD70AA /* NetFlixInfo.swift */,
+			);
+			path = NetFlix;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +334,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEEECBA328A2646C00CD70AA /* NetFlixMain.storyboard in Resources */,
 				AED4006A289A74ED00705D27 /* TMDBCollectionViewCell.xib in Resources */,
+				AEEECB9F28A2607000CD70AA /* PosterCollectionViewCell.xib in Resources */,
+				AEEECB9728A25F4C00CD70AA /* PosterView.xib in Resources */,
 				AE4A3E26289CFAAB00300ABD /* MovieVideo.storyboard in Resources */,
 				AECAA3C4289EC7DD0080758C /* CrewTableViewCell.xib in Resources */,
 				AED5CF142899FD4F00E96202 /* .gitignore in Resources */,
@@ -324,20 +359,25 @@
 			files = (
 				AE4A3E0B289BABFA00300ABD /* MovieDetailTableViewCell.swift in Sources */,
 				AED5CF042899FD3A00E96202 /* TMDBViewController.swift in Sources */,
+				AEEECB9B28A2603100CD70AA /* NetFlixMainViewController.swift in Sources */,
 				AE4A3E24289CF3AD00300ABD /* TMDBAPIManger.swift in Sources */,
 				AE4A3E28289CFAD700300ABD /* MovieVideoViewController.swift in Sources */,
 				AED5CF002899FD3A00E96202 /* AppDelegate.swift in Sources */,
 				AE4A3E16289BBC7000300ABD /* ActorInfoStruct.swift in Sources */,
 				AECAA3C3289EC7DD0080758C /* CrewTableViewCell.swift in Sources */,
 				AED40069289A74ED00705D27 /* TMDBCollectionViewCell.swift in Sources */,
+				AEEECB9E28A2607000CD70AA /* PosterCollectionViewCell.swift in Sources */,
 				AED5CF162899FD6F00E96202 /* APIKey.swift in Sources */,
 				AE4A3E0F289BAC2F00300ABD /* MovieDetailViewController.swift in Sources */,
 				AED4006C289A857300705D27 /* ReusableViewProtocol.swift in Sources */,
 				AE4A3E1B289C0DA200300ABD /* OverViewTableViewCell.swift in Sources */,
 				AE4A3E18289C00EE00300ABD /* MovieInfoStruct.swift in Sources */,
+				AEEECBA528A2738200CD70AA /* NetFlixInfo.swift in Sources */,
 				AECAA3BB289EBE170080758C /* CrewInfoStruct.swift in Sources */,
 				AECAA3B9289EB6E10080758C /* EndPoint.swift in Sources */,
 				AED5CF022899FD3A00E96202 /* SceneDelegate.swift in Sources */,
+				AEEECBA128A260B500CD70AA /* NetFlixTableViewCell.swift in Sources */,
+				AEEECB9928A25F5A00CD70AA /* PosterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
