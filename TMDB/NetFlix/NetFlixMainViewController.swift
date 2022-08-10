@@ -7,11 +7,18 @@
 
 import UIKit
 
+import Kingfisher
+
 class NetFlixMainViewController: UIViewController {
     
+    let color: [UIColor] = [.systemMint, .systemBrown, .lightGray, .yellow, .blue, .green]
+    
+    var episodeList: [[String]] = []
 
-    let list: [NetFlixData] = NetFlixData.list
-
+    var recommendList: [NetFlixData] = []
+    
+    @IBOutlet weak var bannerCollecionView: UICollectionView!
+    
     @IBOutlet weak var mainTableView: UITableView!
     
     override func viewDidLoad() {
@@ -19,8 +26,25 @@ class NetFlixMainViewController: UIViewController {
 
         mainTableView.delegate = self
         mainTableView.dataSource = self
-    
+
+        bannerCollecionView.delegate = self
+        bannerCollecionView.dataSource = self
+        bannerCollecionView.register(UINib(nibName: "PosterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PosterCollectionViewCell")
         
+        bannerCollecionView.isPagingEnabled = true
+        bannerCollecionView.collectionViewLayout = collectionViewLayout()
+        
+        NetFlixTMDBAPIManager.shared.requestImage { value in
+            self.episodeList = value
+            self.mainTableView.reloadData()
+        }
+        
+        RecommendAPIManager.shared.requestTMDBAPI(movie_id: 28) { list in
+            dump(list)
+            self.recommendList = list
+            self.bannerCollecionView.reloadData()
+        }
+    
     }
     
 
@@ -29,22 +53,25 @@ class NetFlixMainViewController: UIViewController {
 extension NetFlixMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return episodeList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NetFlixTableViewCell", for: indexPath) as? NetFlixTableViewCell else { return UITableViewCell() }
         
+        cell.titleLabel.text = NetFlixTMDBAPIManager.shared.tvList[indexPath.section].0
+        
         cell.contentCollectionView.delegate = self
         cell.contentCollectionView.dataSource = self
         cell.contentCollectionView.register(UINib(nibName: "PosterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PosterCollectionViewCell")
+        cell.contentCollectionView.reloadData()
         
-        let netflixdata = list[indexPath.row]
-        cell.configureTitleLabel(netflixdata)
+        cell.contentCollectionView.tag = indexPath.section
+        
         
         return cell
     }
@@ -59,14 +86,47 @@ extension NetFlixMainViewController: UITableViewDelegate, UITableViewDataSource 
 extension NetFlixMainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.count
+        return collectionView == bannerCollecionView ? recommendList.count :  episodeList[collectionView.tag].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCollectionViewCell", for: indexPath) as? PosterCollectionViewCell else { return UICollectionViewCell() }
         
+        if collectionView == bannerCollecionView {
+            cell.posterView.posterImageView.backgroundColor = .black
+            cell.posterView.titleLabel.text = "\(recommendList[indexPath.item].title)"
+            cell.posterView.originalTitleLabel.text = "orginal_title: \(recommendList[indexPath.item].original_title)"
+            cell.posterView.releaseDateLabel.text = "\(recommendList[indexPath.item].releaseDate)"
+            cell.posterView.overviewLabel.text = "\(recommendList[indexPath.item].overview)"
+            let url = URL(string: "\(EndPoint.imageURL)\(recommendList[indexPath.item].posterImage)")
+            cell.posterView.posterImageView.kf.setImage(with: url)
+            
+        } else {
+            let url = URL(string: "\(EndPoint.imageURL)\(episodeList[collectionView.tag][indexPath.item])")
+            cell.posterView.posterImageView.kf.setImage(with: url)
+            cell.posterView.posterImageView.backgroundColor = .black
+            cell.posterView.titleLabel.text = ""
+            cell.posterView.originalTitleLabel.text = ""
+            cell.posterView.overviewLabel.text = ""
+            cell.posterView.releaseDateLabel.text = ""
+        }
+        
         return cell
+    }
+    
+    func collectionViewLayout() -> UICollectionViewFlowLayout {
+        
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: bannerCollecionView.frame.height)
+        layout.estimatedItemSize = .zero
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        return layout
     }
     
     

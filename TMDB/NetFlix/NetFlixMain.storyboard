@@ -17,8 +17,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EYH-uF-irg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="HcX-3j-5n6"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="acb-VD-ttL">
+                                    <size key="itemSize" width="413" height="182"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="XdL-LU-Oy2">
+                                        <rect key="frame" x="0.5" y="0.0" width="413" height="182"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="auN-JD-bMj">
+                                            <rect key="frame" x="0.0" y="0.0" width="413" height="182"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="413" height="182"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="DnK-NE-IES">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="224" width="414" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NetFlixTableViewCell" rowHeight="178" id="ata-vN-jrW" customClass="NetFlixTableViewCell" customModule="TMDB" customModuleProvider="target">
@@ -76,13 +100,17 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="DnK-NE-IES" secondAttribute="trailing" id="6pX-9M-OQR"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="DnK-NE-IES" secondAttribute="bottom" id="7zC-31-YVU"/>
-                            <constraint firstItem="DnK-NE-IES" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="MQw-8i-Ysg"/>
-                            <constraint firstItem="DnK-NE-IES" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="d8s-cS-Zsh"/>
+                            <constraint firstItem="DnK-NE-IES" firstAttribute="top" secondItem="EYH-uF-irg" secondAttribute="bottom" id="41S-Va-tkY"/>
+                            <constraint firstItem="EYH-uF-irg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LTe-7d-U8h"/>
+                            <constraint firstItem="EYH-uF-irg" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="g1l-O6-2fl"/>
+                            <constraint firstItem="DnK-NE-IES" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="moN-qo-n5d"/>
+                            <constraint firstItem="DnK-NE-IES" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oeN-7u-v9r"/>
+                            <constraint firstAttribute="bottom" secondItem="DnK-NE-IES" secondAttribute="bottom" id="tDc-qG-mhQ"/>
+                            <constraint firstItem="EYH-uF-irg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="z2f-ND-juf"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerCollecionView" destination="EYH-uF-irg" id="8NO-jr-gdY"/>
                         <outlet property="mainTableView" destination="DnK-NE-IES" id="XXs-fh-eG4"/>
                     </connections>
                 </viewController>

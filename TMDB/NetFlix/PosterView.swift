@@ -9,7 +9,17 @@ import UIKit
 
 class PosterView: UIView {
 
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView! {
+        didSet {
+            posterImageView.contentMode = .scaleToFill
+        }
+    }
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var originalTitleLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
+    
     @IBOutlet weak var netflixButton: UIButton!
     
     required init?(coder: NSCoder) {
@@ -17,7 +27,9 @@ class PosterView: UIView {
         
         let view = UINib(nibName: "PosterView", bundle: nil).instantiate(withOwner: self).first as! UIView
         view.frame = bounds
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         self.addSubview(view)
     }
+    
+  
 }

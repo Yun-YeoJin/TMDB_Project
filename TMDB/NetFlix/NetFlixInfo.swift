@@ -8,17 +8,12 @@
 import Foundation
 
 struct NetFlixData {
+    
     let title: String
+    let releaseDate: String
+    let original_title : String
+    let overview: String
+    let posterImage: String
+
 }
 
-extension NetFlixData {
-    static let list = [
-        NetFlixData(title: "넷플릭스 인기 콘텐츠"),
-        NetFlixData(title: "비슷한 콘텐츠"),
-        NetFlixData(title: "액션/SF/스릴러"),
-        NetFlixData(title: "미국 TV 프로그램"),
-        NetFlixData(title: "한국 TV 프로그램"),
-        NetFlixData(title: "한국 예능 인기 콘텐츠"),
-        NetFlixData(title: "한국 영화 인기 콘텐츠")
-    ]
-}

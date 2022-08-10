@@ -9,6 +9,7 @@ import UIKit
 
 class NetFlixTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var contentCollectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -19,12 +20,9 @@ class NetFlixTableViewCell: UITableViewCell {
         
         setupUI()
     }
-
-    func configureTitleLabel(_ data: NetFlixData) {
-        titleLabel.text = data.title
-    }
     
     func setupUI() {
+        titleLabel.text = "넷플릭스 인기 콘텐츠"
         titleLabel.font = .boldSystemFont(ofSize: 20)
         titleLabel.backgroundColor = .clear
         contentCollectionView.backgroundColor = .clear
@@ -36,9 +34,9 @@ class NetFlixTableViewCell: UITableViewCell {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: contentCollectionView.bounds.width / 3, height: 200)
+        layout.itemSize = CGSize(width: 240 , height: 180)
         layout.estimatedItemSize = .zero
-        layout.minimumLineSpacing = 16
+        layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         

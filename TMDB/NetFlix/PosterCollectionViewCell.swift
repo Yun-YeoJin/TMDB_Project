@@ -14,18 +14,28 @@ class PosterCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    
+       LabelDesign()
         
-        setupUI()
+    }
+
+    func LabelDesign() {
         
+        posterView.titleLabel.textColor = .white
+        posterView.titleLabel.font = .boldSystemFont(ofSize: 15)
+        posterView.originalTitleLabel.font = .systemFont(ofSize: 12)
+        posterView.originalTitleLabel.textColor = .opaqueSeparator
+        posterView.releaseDateLabel.font = .systemFont(ofSize: 13)
+        posterView.releaseDateLabel.textColor = .white
+        posterView.overviewLabel.font = .systemFont(ofSize: 11)
+        posterView.overviewLabel.textColor = .white
+        posterView.overviewLabel.numberOfLines = 0
+        posterView.posterImageView.contentMode = .scaleAspectFit
+    
     }
     
-    func setupUI() {
-        posterView.backgroundColor = .clear
-        posterView.posterImageView.layer.cornerRadius = 10
-        posterView.posterImageView.backgroundColor = .opaqueSeparator
-        posterView.netflixButton.tintColor = .red
-        
-    }
+    
+    
     
 
 }

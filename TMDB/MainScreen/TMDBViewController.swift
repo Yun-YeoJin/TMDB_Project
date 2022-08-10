@@ -59,11 +59,11 @@ class TMDBViewController: UIViewController {
     func formattedDate(dataString: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        
         if let date = formatter.date(from: dataString) {
             formatter.dateFormat = "dd / MM / yyyy"
             return formatter.string(from: date)
         } else { return "" }
+        
     }
     func collectionViewDesign() {
         

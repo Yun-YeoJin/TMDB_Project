@@ -8,7 +8,6 @@
 import UIKit
 
 import Alamofire
-import Kingfisher
 import SwiftyJSON
 
 class RequestMovieDataAPIManager {
@@ -125,5 +124,122 @@ class RequestMovieVideoAPIManager {
             }
             
         }
+    }
+}
+
+class NetFlixTMDBAPIManager {
+    
+    static let shared = NetFlixTMDBAPIManager()
+    
+    private init() { }
+    
+    let tvList = [
+        
+        ("환혼", 135157),
+        ("이상한 변호사 우영우", 197067),
+        ("인사이더", 135655),
+        ("미스터 션사인", 75820),
+        ("스카이 캐슬", 84327),
+        ("사랑의 불시착", 94796),
+        ("이태원 클라스", 96162),
+        ("호텔 델루나", 90447)
+    
+    ]
+    
+    func callRequest(query: Int, completionHandler: @escaping ([String]) -> () ) {
+        
+
+        let url = "https://api.themoviedb.org/3/tv/\(query)/season/1?api_key=\(APIKey.TMDB)&language=ko-KR"
+
+            AF.request(url, method: .get).validate().responseData { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    
+                    
+                    let value = json["episodes"].arrayValue.map { $0["still_path"].stringValue }
+                    
+                    completionHandler(value)
+                    
+                case .failure(let error):
+                print(error)
+            }
+        }
+    
+    }
+    
+    
+    func requestImage(completionHandler: @escaping ([[String]]) -> ()) {
+
+        var posterList: [[String]] = []
+
+        NetFlixTMDBAPIManager.shared.callRequest(query: tvList[0].1) { value in
+            posterList.append(value)
+
+            NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[1].1) { value in
+                posterList.append(value)
+
+                NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[2].1) { value in
+                    posterList.append(value)
+
+                    NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[3].1) { value in
+                        posterList.append(value)
+
+                        NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[4].1) { value in
+                            posterList.append(value)
+
+                            NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[5].1) { value in
+                                posterList.append(value)
+
+                                NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[6].1) { value in
+                                    posterList.append(value)
+
+                                    NetFlixTMDBAPIManager.shared.callRequest(query: self.tvList[7].1) { value in
+                                        posterList.append(value)
+                                        
+                                        completionHandler(posterList)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+}
+
+class RecommendAPIManager {
+    
+    static let shared = RecommendAPIManager()
+    
+    private init() { }
+    
+    func requestTMDBAPI(movie_id: Int, completionHandler: @escaping ([NetFlixData]) -> () ) {
+        
+        let url = "\(EndPoint.tmdbURL)/movie/\(movie_id)/recommendations?api_key=\(APIKey.TMDB)"
+        
+        AF.request(url, method: .get).validate().responseData { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+          
+                
+                let list = json["results"].arrayValue.map { NetFlixData(title: $0["title"].stringValue, releaseDate: $0["release_date"].stringValue, original_title: $0["original_title"].stringValue, overview: $0["overview"].stringValue, posterImage: $0["poster_path"].stringValue) }
+                
+                completionHandler(list)
+    
+                
+            case .failure(let error):
+                print(error)
+                
+              
+            }
+            
+        }
+        
+        
     }
 }
