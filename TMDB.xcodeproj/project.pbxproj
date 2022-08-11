@@ -19,6 +19,9 @@
 		AE4A3E24289CF3AD00300ABD /* TMDBAPIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4A3E23289CF3AD00300ABD /* TMDBAPIManger.swift */; };
 		AE4A3E26289CFAAB00300ABD /* MovieVideo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE4A3E25289CFAAB00300ABD /* MovieVideo.storyboard */; };
 		AE4A3E28289CFAD700300ABD /* MovieVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4A3E27289CFAD700300ABD /* MovieVideoViewController.swift */; };
+		AE5D57B428A4E68C0012E81A /* TheaterMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE5D57B328A4E68C0012E81A /* TheaterMap.storyboard */; };
+		AE5D57B628A4E6A20012E81A /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D57B528A4E6A20012E81A /* TheaterViewController.swift */; };
+		AE5D57B828A4E6DC0012E81A /* TheaterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D57B728A4E6DC0012E81A /* TheaterInfo.swift */; };
 		AECAA3B9289EB6E10080758C /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECAA3B8289EB6E10080758C /* EndPoint.swift */; };
 		AECAA3BB289EBE170080758C /* CrewInfoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECAA3BA289EBE170080758C /* CrewInfoStruct.swift */; };
 		AECAA3C3289EC7DD0080758C /* CrewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECAA3C1289EC7DD0080758C /* CrewTableViewCell.swift */; };
@@ -59,6 +62,9 @@
 		AE4A3E23289CF3AD00300ABD /* TMDBAPIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManger.swift; sourceTree = "<group>"; };
 		AE4A3E25289CFAAB00300ABD /* MovieVideo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieVideo.storyboard; sourceTree = "<group>"; };
 		AE4A3E27289CFAD700300ABD /* MovieVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideoViewController.swift; sourceTree = "<group>"; };
+		AE5D57B328A4E68C0012E81A /* TheaterMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TheaterMap.storyboard; sourceTree = "<group>"; };
+		AE5D57B528A4E6A20012E81A /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
+		AE5D57B728A4E6DC0012E81A /* TheaterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterInfo.swift; sourceTree = "<group>"; };
 		AECAA3B8289EB6E10080758C /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		AECAA3BA289EBE170080758C /* CrewInfoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewInfoStruct.swift; sourceTree = "<group>"; };
 		AECAA3C1289EC7DD0080758C /* CrewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewTableViewCell.swift; sourceTree = "<group>"; };
@@ -135,6 +141,16 @@
 				AE4A3E23289CF3AD00300ABD /* TMDBAPIManger.swift */,
 			);
 			path = APIManager;
+			sourceTree = "<group>";
+		};
+		AE5D57B028A4E65C0012E81A /* Theater */ = {
+			isa = PBXGroup;
+			children = (
+				AE5D57B328A4E68C0012E81A /* TheaterMap.storyboard */,
+				AE5D57B528A4E6A20012E81A /* TheaterViewController.swift */,
+				AE5D57B728A4E6DC0012E81A /* TheaterInfo.swift */,
+			);
+			path = Theater;
 			sourceTree = "<group>";
 		};
 		AECAA3B0289EB5B40080758C /* InfoStruct */ = {
@@ -232,6 +248,7 @@
 		AED5CEFE2899FD3A00E96202 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				AE5D57B028A4E65C0012E81A /* Theater */,
 				AEEECB9528A25F2100CD70AA /* NetFlix */,
 				AED4005B289A658900705D27 /* APIKey & EndPoint */,
 				AE4A3E22289CF39400300ABD /* APIManager */,
@@ -343,6 +360,7 @@
 				AED5CF142899FD4F00E96202 /* .gitignore in Resources */,
 				AED5CF0C2899FD3C00E96202 /* LaunchScreen.storyboard in Resources */,
 				AE4A3E0C289BABFA00300ABD /* MovieDetailTableViewCell.xib in Resources */,
+				AE5D57B428A4E68C0012E81A /* TheaterMap.storyboard in Resources */,
 				AE4A3E1C289C0DA200300ABD /* OverViewTableViewCell.xib in Resources */,
 				AE4A3E11289BAC3B00300ABD /* MovieDetail.storyboard in Resources */,
 				AED5CF092899FD3C00E96202 /* Assets.xcassets in Resources */,
@@ -369,6 +387,7 @@
 				AEEECB9E28A2607000CD70AA /* PosterCollectionViewCell.swift in Sources */,
 				AED5CF162899FD6F00E96202 /* APIKey.swift in Sources */,
 				AE4A3E0F289BAC2F00300ABD /* MovieDetailViewController.swift in Sources */,
+				AE5D57B628A4E6A20012E81A /* TheaterViewController.swift in Sources */,
 				AED4006C289A857300705D27 /* ReusableViewProtocol.swift in Sources */,
 				AE4A3E1B289C0DA200300ABD /* OverViewTableViewCell.swift in Sources */,
 				AE4A3E18289C00EE00300ABD /* MovieInfoStruct.swift in Sources */,
@@ -376,6 +395,7 @@
 				AECAA3BB289EBE170080758C /* CrewInfoStruct.swift in Sources */,
 				AECAA3B9289EB6E10080758C /* EndPoint.swift in Sources */,
 				AED5CF022899FD3A00E96202 /* SceneDelegate.swift in Sources */,
+				AE5D57B828A4E6DC0012E81A /* TheaterInfo.swift in Sources */,
 				AEEECBA128A260B500CD70AA /* NetFlixTableViewCell.swift in Sources */,
 				AEEECB9928A25F5A00CD70AA /* PosterView.swift in Sources */,
 			);

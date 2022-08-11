@@ -45,14 +45,27 @@ class TMDBViewController: UIViewController {
       
         
        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.star"), style: .plain, target: .none, action: #selector(listButtonClicked))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: .none, action: #selector(magnifyingglassButtonClicked))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.star"), style: .plain, target: self, action: #selector(listButtonClicked))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(magnifyingglassButtonClicked))
     }
     
     @objc func magnifyingglassButtonClicked() {
         
+        let sb = UIStoryboard(name: "NetFlixMain", bundle: nil)
+        
+        let vc = sb.instantiateViewController(withIdentifier: "NetFlixMainViewController") as! NetFlixMainViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
     }
     @objc func listButtonClicked() {
+        
+        let sb = UIStoryboard(name: "TheaterMap", bundle: nil)
+        
+        let vc = sb.instantiateViewController(withIdentifier: "TheaterViewController") as! TheaterViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     

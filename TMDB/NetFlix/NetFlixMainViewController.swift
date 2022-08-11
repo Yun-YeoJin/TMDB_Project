@@ -11,8 +11,6 @@ import Kingfisher
 
 class NetFlixMainViewController: UIViewController {
     
-    let color: [UIColor] = [.systemMint, .systemBrown, .lightGray, .yellow, .blue, .green]
-    
     var episodeList: [[String]] = []
 
     var recommendList: [NetFlixData] = []
