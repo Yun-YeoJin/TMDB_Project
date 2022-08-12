@@ -225,7 +225,6 @@ class RecommendAPIManager {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-          
                 
                 let list = json["results"].arrayValue.map { NetFlixData(title: $0["title"].stringValue, releaseDate: $0["release_date"].stringValue, original_title: $0["original_title"].stringValue, overview: $0["overview"].stringValue, posterImage: $0["poster_path"].stringValue) }
                 

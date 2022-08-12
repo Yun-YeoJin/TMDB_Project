@@ -10,13 +10,13 @@ import MapKit
 import CoreLocation
 
 
-
-
 class TheaterViewController: UIViewController {
     
     let list = TheaterList()
     
     let locationManager = CLLocationManager()
+    
+    var currentRegion: CLLocationCoordinate2D?
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -37,6 +37,8 @@ class TheaterViewController: UIViewController {
     }
     
     @objc func foundCurrentLocationButtonClicked() {
+        
+        setRegionAndAnnotation(currentRegion!, "현재 위치", 500)
         
     }
     
@@ -68,6 +70,7 @@ extension TheaterViewController: CLLocationManagerDelegate {
         if let coordinate = locations.last?.coordinate {
             
             setRegionAndAnnotation(coordinate, "현재 위치", 300)
+            currentRegion = coordinate
             
         }
         locationManager.stopUpdatingLocation()
@@ -140,31 +143,25 @@ extension TheaterViewController {
                 self.setRegionAndAnnotation(CLLocationCoordinate2D(latitude: item.latitude , longitude: item.longitude), item.location, 500)
             }
         }
-        let megaBox = UIAlertAction(title: "메가박스", style: .default) { (_) in
+        let megaBox = UIAlertAction(title: "메가박스", style: .default) { value in
+            setAnnotation(value)
+        }
+        let lotteCinema = UIAlertAction(title: "롯데시네마", style: .default) {value in
+            setAnnotation(value)
+        }
+        let cgv = UIAlertAction(title: "CGV", style: .default) { value in
+            setAnnotation(value)
+        }
+        
+        func setAnnotation(_ value: UIAlertAction) {
             self.mapView.removeAnnotations(self.mapView.annotations)
             for item in self.list.mapAnnotations {
-                if item.type == "메가박스" {
+                if item.type == value.title {
                     self.setRegionAndAnnotation(CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), item.location, 1500)
                 }
             }
         }
-        let lotteCinema = UIAlertAction(title: "롯데시네마", style: .default) { (_) in
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            for item in self.list.mapAnnotations {
-                if item.type == "롯데시네마" {
-                    self.setRegionAndAnnotation(CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), item.location, 1500)
-                }
-            }
-        }
-        let cgv = UIAlertAction(title: "CGV", style: .default) { (_) in
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            for item in self.list.mapAnnotations {
-                if item.type == "CGV" {
-                    self.setRegionAndAnnotation(CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), item.location, 1500)
-                }
-                
-            }
-        }
+        
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         
         showTheaterListToSelectAlert.addAction(megaBox)
