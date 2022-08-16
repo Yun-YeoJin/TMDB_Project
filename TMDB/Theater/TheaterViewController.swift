@@ -12,7 +12,7 @@ import CoreLocation
 
 class TheaterViewController: UIViewController {
     
-    let list = TheaterList()
+    private let list = TheaterList()
     
     let locationManager = CLLocationManager()
     
@@ -48,7 +48,7 @@ class TheaterViewController: UIViewController {
         
     }
     
-    func setRegionAndAnnotation(_ center: CLLocationCoordinate2D, _ title: String, _ distance: Double) {
+    private func setRegionAndAnnotation(_ center: CLLocationCoordinate2D, _ title: String, _ distance: Double) {
         
         //지도 중심 기반으로 보여질 범위 설정
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: distance, longitudinalMeters: distance)
@@ -65,7 +65,7 @@ class TheaterViewController: UIViewController {
 
 extension TheaterViewController: CLLocationManagerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let coordinate = locations.last?.coordinate {
             
@@ -76,7 +76,7 @@ extension TheaterViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
     }
     
@@ -84,7 +84,7 @@ extension TheaterViewController: CLLocationManagerDelegate {
 // 위치 관련된 User Defined Methods
 extension TheaterViewController {
     
-    func checkUserDeviceLocationServiceAuthorization() {
+    public func checkUserDeviceLocationServiceAuthorization() {
         
         let authorizationStatus: CLAuthorizationStatus
         
@@ -105,7 +105,7 @@ extension TheaterViewController {
         
     }
     
-    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+    public func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
             
         case .notDetermined:
@@ -133,7 +133,7 @@ extension TheaterViewController {
     
     
     
-    func showTheaterListToSelectAlert() {
+    public func showTheaterListToSelectAlert() {
         
         let showTheaterListToSelectAlert = UIAlertController(title: "영화관 선택", message: "", preferredStyle: .actionSheet)
         
@@ -173,7 +173,7 @@ extension TheaterViewController {
         present(showTheaterListToSelectAlert, animated: true, completion: nil)
     }
     
-    func showRequestLocationServiceAlert() {
+    public func showRequestLocationServiceAlert() {
         
         let requestLocationServiceAlert = UIAlertController(title: "위치정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
         let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
@@ -190,14 +190,14 @@ extension TheaterViewController {
         present(requestLocationServiceAlert, animated: true, completion: nil)
     }
     
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         
         checkUserDeviceLocationServiceAuthorization()
         
     }
     
     //iOS 14.0 미만
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
     }
 }

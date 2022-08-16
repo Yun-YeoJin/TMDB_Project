@@ -19,7 +19,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
         
     }
 
-    func LabelDesign() {
+    private func LabelDesign() {
         
         posterView.titleLabel.textColor = .white
         posterView.titleLabel.font = .boldSystemFont(ofSize: 15)

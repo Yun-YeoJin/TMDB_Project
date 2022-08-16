@@ -12,7 +12,7 @@ import SwiftyJSON
 import JGProgressHUD
 import Kingfisher
 
-enum Header: String, CaseIterable {
+fileprivate enum Header: String, CaseIterable {
     case OverView
     case Actor
     case Crew
@@ -30,11 +30,11 @@ class MovieDetailViewController: UIViewController {
     var crewList: [CrewInfoStruct] = []
     
     let hud = JGProgressHUD()
-
-    var overViewImage = "chevron.down"
+    
+    private var overViewImage = "chevron.down"
     
     
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +43,7 @@ class MovieDetailViewController: UIViewController {
         tableView.register(UINib(nibName: "MovieDetailTableViewCell", bundle: nil), forCellReuseIdentifier: MovieDetailTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: "OverViewTableViewCell", bundle: nil), forCellReuseIdentifier: OverViewTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: "CrewTableViewCell", bundle: nil), forCellReuseIdentifier: CrewTableViewCell.reuseIdentifier)
-    
+        
         
         movieTitleLabel.text = movieData?.movieTitle
         movieTitleLabel.font = .boldSystemFont(ofSize: 22)
@@ -57,7 +57,7 @@ class MovieDetailViewController: UIViewController {
         
     }
     
-    func requestActor() {
+    fileprivate func requestActor() {
         
         guard let movieData = movieData else {
             return
@@ -71,10 +71,10 @@ class MovieDetailViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-
+        
     }
     
-    func headerViewDesign(data: MovieInfoStruct) {
+    fileprivate func headerViewDesign(data: MovieInfoStruct) {
         
         let postImageURL = URL(string: EndPoint.imageURL + data.moviePoster)
         posterImageView.kf.setImage(with: postImageURL)
@@ -91,7 +91,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     
- 
+    
     
 }
 
@@ -105,7 +105,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             return Header.Crew.rawValue
         }
-            
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -131,7 +131,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             return crewList.count
         }
-            
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,22 +145,22 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return cell
             
         } else if indexPath.section == 1 {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailTableViewCell.reuseIdentifier, for: indexPath) as? MovieDetailTableViewCell else { return UITableViewCell() }
-        
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailTableViewCell.reuseIdentifier, for: indexPath) as? MovieDetailTableViewCell else { return UITableViewCell() }
             
-        let actorImageURL = URL(string: EndPoint.imageURL + actorList[indexPath.item].actorImage)
-        cell.actorImageView.kf.setImage(with: actorImageURL)
             
-        cell.actorNameLabel.text = actorList[indexPath.row].name
-        cell.actorNickNameLabel.text = actorList[indexPath.row].nickname
-    
-        return cell
+            let actorImageURL = URL(string: EndPoint.imageURL + actorList[indexPath.item].actorImage)
+            cell.actorImageView.kf.setImage(with: actorImageURL)
+            
+            cell.actorNameLabel.text = actorList[indexPath.row].name
+            cell.actorNickNameLabel.text = actorList[indexPath.row].nickname
+            
+            return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CrewTableViewCell.reuseIdentifier, for: indexPath) as? CrewTableViewCell else { return UITableViewCell() }
             
             cell.crewNameLabel.text = crewList[indexPath.row].name
             cell.crewDepartmentLabel.text = crewList[indexPath.row].department
-        
+            
             return cell
         }
         
@@ -178,6 +178,6 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-   
+    
     
 }

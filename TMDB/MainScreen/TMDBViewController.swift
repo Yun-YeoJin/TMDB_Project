@@ -22,10 +22,10 @@ class TMDBViewController: UIViewController {
     
     var movieList: [MovieInfoStruct] = []
     
-    var changePage = 1
-    var totalPage = 0
+    private var changePage = 1
+    private var totalPage = 0
     
-    var movieKey = ""
+    private var movieKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,7 @@ class TMDBViewController: UIViewController {
         
     }
     
-    func formattedDate(dataString: String) -> String {
+    fileprivate func formattedDate(dataString: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         if let date = formatter.date(from: dataString) {
@@ -78,7 +78,7 @@ class TMDBViewController: UIViewController {
         } else { return "" }
         
     }
-    func collectionViewDesign() {
+    fileprivate func collectionViewDesign() {
         
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 8
@@ -93,7 +93,7 @@ class TMDBViewController: UIViewController {
         
     }
     
-    func requestMovieAPI() {
+    private func requestMovieAPI() {
         RequestMovieDataAPIManager.shared.requestTMDBAPI(media_type: "movie", time_window: "week") { list in
             self.movieList.append(contentsOf: list)
             self.collectionView.reloadData()
@@ -102,7 +102,7 @@ class TMDBViewController: UIViewController {
     
     
     // 영화 예고편 보여주기
-    func requestMovieVideoAPI(movieID: Int) {
+    private func requestMovieVideoAPI(movieID: Int) {
         RequestMovieVideoAPIManager.shared.requestMovieVideoAPI(movieID: movieID) { movieKey in
             self.movieKey = movieKey
             DispatchQueue.main.async {

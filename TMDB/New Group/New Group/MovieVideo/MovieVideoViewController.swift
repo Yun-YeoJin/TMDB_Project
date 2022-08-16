@@ -16,7 +16,7 @@ class MovieVideoViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    var movieKey = ""
+    public var movieKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class MovieVideoViewController: UIViewController {
         }
     }
     
-    func playMovieVideoURL(key: String) {
+    private func playMovieVideoURL(key: String) {
         
         guard let url = URL(string: "https://www.youtube.com/watch?v=\(key)") else { return }
         

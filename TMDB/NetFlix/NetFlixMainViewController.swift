@@ -50,15 +50,15 @@ class NetFlixMainViewController: UIViewController {
 
 extension NetFlixMainViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return episodeList.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NetFlixTableViewCell", for: indexPath) as? NetFlixTableViewCell else { return UITableViewCell() }
         
         cell.titleLabel.text = NetFlixTMDBAPIManager.shared.tvList[indexPath.section].0
@@ -74,7 +74,7 @@ extension NetFlixMainViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
         
     }
@@ -113,7 +113,7 @@ extension NetFlixMainViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-    func collectionViewLayout() -> UICollectionViewFlowLayout {
+    fileprivate func collectionViewLayout() -> UICollectionViewFlowLayout {
         
         let layout = UICollectionViewFlowLayout()
         

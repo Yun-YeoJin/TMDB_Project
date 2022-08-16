@@ -16,7 +16,7 @@ class RequestMovieDataAPIManager {
     
     private init() { }
     
-    func requestTMDBAPI(media_type: String, time_window: String, completionHandler: @escaping ([MovieInfoStruct]) -> () ) {
+    public func requestTMDBAPI(media_type: String, time_window: String, completionHandler: @escaping ([MovieInfoStruct]) -> () ) {
         
         let url = "\(EndPoint.tmdbURL)/trending/\(media_type)/\(time_window)?api_key=\(APIKey.TMDB)"
         
@@ -146,7 +146,7 @@ class NetFlixTMDBAPIManager {
     
     ]
     
-    func callRequest(query: Int, completionHandler: @escaping ([String]) -> () ) {
+    public func callRequest(query: Int, completionHandler: @escaping ([String]) -> () ) {
         
 
         let url = "https://api.themoviedb.org/3/tv/\(query)/season/1?api_key=\(APIKey.TMDB)&language=ko-KR"
@@ -169,7 +169,7 @@ class NetFlixTMDBAPIManager {
     }
     
     
-    func requestImage(completionHandler: @escaping ([[String]]) -> ()) {
+    public func requestImage(completionHandler: @escaping ([[String]]) -> ()) {
 
         var posterList: [[String]] = []
 
@@ -217,7 +217,7 @@ class RecommendAPIManager {
     
     private init() { }
     
-    func requestTMDBAPI(movie_id: Int, completionHandler: @escaping ([NetFlixData]) -> () ) {
+    public func requestTMDBAPI(movie_id: Int, completionHandler: @escaping ([NetFlixData]) -> () ) {
         
         let url = "\(EndPoint.tmdbURL)/movie/\(movie_id)/recommendations?api_key=\(APIKey.TMDB)"
         

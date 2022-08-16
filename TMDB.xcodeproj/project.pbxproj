@@ -252,7 +252,6 @@
 				AEEECB9528A25F2100CD70AA /* NetFlix */,
 				AED4005B289A658900705D27 /* APIKey & EndPoint */,
 				AE4A3E22289CF39400300ABD /* APIManager */,
-				AED5CEFF2899FD3A00E96202 /* AppDelegate.swift */,
 				AED5CF082899FD3C00E96202 /* Assets.xcassets */,
 				AED5CF0D2899FD3C00E96202 /* Info.plist */,
 				AECAA3B0289EB5B40080758C /* InfoStruct */,
@@ -262,6 +261,7 @@
 				AECAA3B2289EB5BB0080758C /* MovieVideo */,
 				AE4A3E1E289C153500300ABD /* Protocol & Extension */,
 				AED5CF012899FD3A00E96202 /* SceneDelegate.swift */,
+				AED5CEFF2899FD3A00E96202 /* AppDelegate.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
